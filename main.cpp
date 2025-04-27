@@ -9,7 +9,7 @@
 struct TargetState
 {
 	int id = 0;						// 靶标 id
-	bool enable = true;				// 是否启用这个靶标, 默认为 false, 用来判断这个靶标是否读取
+	bool enable = false;			// 是否启用这个靶标, 默认为 false, 用来判断这个靶标是否读取
 	double ratio = 0.0;				// 缩放比例
 	std::vector<int> box = {};		// box 位置
 	std::vector<double> standard_center = {};		// 标准靶标中心坐标
@@ -65,11 +65,15 @@ void load_main_data_from_json(const std::string filename = "main_data.json") {
 		ifs >> j;
 
 		for (auto& [key, value] : j.items()) {
+			bool enable = value["enable"].get<bool>();
+			if (!enable)
+				continue;
+
 			int id = std::stoi(key);
 
 			TargetState target_state;
 			target_state.id = id;
-			target_state.enable = value["enable"].get<bool>();
+			target_state.enable = enable;
 			target_state.ratio = value["ratio"].get<double>();
 			target_state.box = value["box"].get<std::vector<int>>();
 			target_state.standard_center = value["standard_center"].get<std::vector<double>>();
@@ -87,8 +91,9 @@ void load_main_data_from_json(const std::string filename = "main_data.json") {
 
 int main() {
 	id2target_states[0] = TargetState{ 0, true, 1.0, {100, 100, 200, 200}, {100.0, 100.0}, {50.0, 50.0}, 100.0, {1.0, 1.0} };
-	id2target_states[2] = TargetState{ 1, true, 1.0, {200, 200, 300, 300}, {200.0, 200.0}, {150.0, 150.0}, 200.0, {2.0, 2.0} };
-	id2target_states[3] = TargetState{ 2, true, 1.0, {300, 300, 400, 400}, {300.0, 300.0}, {250.0, 250.0}, 300.0, {3.0, 3.0} };
+	id2target_states[2] = TargetState{ 2, true, 2.0, {200, 200, 300, 300}, {200.0, 200.0}, {150.0, 150.0}, 200.0, {2.0, 2.0} };
+	id2target_states[3] = TargetState{ 3, false, 3.0, {300, 300, 400, 400}, {300.0, 300.0}, {250.0, 250.0}, 300.0, {3.0, 3.0} };
+	id2target_states[4] = TargetState{ 4, true, 4.0, {400, 400, 500, 500}, {400.0, 400.0}, {350.0, 350.0}, 400.0, {4.0, 4.0} };
 
 	save_main_data_to_json();
 
