@@ -43,11 +43,15 @@ void save_main_data_to_json(const std::string filename = "main_data.json")
 
 		std::stringstream ss;
 		ss << "save main data to file: " << filename;
-		std::cout << ss.str() << std::endl;
+		std::string print_str = ss.str();
+		std::cout << print_str << std::endl;
 	}
 	catch (const std::exception &e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::stringstream ss;
+		ss << e.what();
+		std::string print_str = ss.str();
+		std::cerr << print_str << std::endl;
 	}
 }
 
@@ -71,7 +75,8 @@ void load_main_data_from_json(const std::string filename = "main_data.json")
 		{
 			std::stringstream ss;
 			ss << "file not exist: " << filename << ", can not load main data";
-			std::cout << ss.str() << std::endl;
+			std::string print_str = ss.str();
+			std::cout << print_str << std::endl;
 			return;
 		}
 
@@ -103,11 +108,15 @@ void load_main_data_from_json(const std::string filename = "main_data.json")
 
 		std::stringstream ss;
 		ss << "load main data from file: " << filename;
-		std::cout << ss.str() << std::endl;
+		std::string print_str = ss.str();
+		std::cout << print_str << std::endl;
 	}
 	catch (const std::exception &e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::stringstream ss;
+		ss << e.what();
+		std::string print_str = ss.str();
+		std::cerr << print_str << std::endl;
 	}
 }
 
