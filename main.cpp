@@ -41,13 +41,15 @@ void save_main_data_to_json(const std::string filename = "main_data.json")
 		for (auto &[id, target_state] : id2target_states)
 		{
 			std::string str_id = std::to_string(id);
-			j[str_id]["enable"] = target_state.enable;
-			j[str_id]["ratio"] = target_state.ratio;
-			j[str_id]["box"] = target_state.box;
-			j[str_id]["standard_center"] = target_state.standard_center;
-			j[str_id]["standard_radii"] = target_state.standard_radii;
-			j[str_id]["standard_distance"] = target_state.standard_distance;
-			j[str_id]["standard_offset"] = target_state.standard_offset;
+			nlohmann::json j1;
+			j1["enable"] = target_state.enable;
+			j1["ratio"] = target_state.ratio;
+			j1["box"] = target_state.box;
+			j1["standard_center"] = target_state.standard_center;
+			j1["standard_radii"] = target_state.standard_radii;
+			j1["standard_distance"] = target_state.standard_distance;
+			j1["standard_offset"] = target_state.standard_offset;
+			j[str_id] = j1;
 		}
 
 		std::ofstream ofs(filename);
