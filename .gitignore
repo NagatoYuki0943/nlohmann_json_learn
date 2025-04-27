@@ -2,8 +2,8 @@
 .idea
 .vscode
 
-build/
-out/
+build
+out
 include/nlohmann
 
 
