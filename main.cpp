@@ -20,6 +20,18 @@ struct TargetState
 
 std::map<int, TargetState> id2target_states;
 
+bool is_directory(const std::string &path)
+{
+	namespace fs = std::filesystem;
+	return fs::exists(path) && fs::is_directory(path);
+}
+
+bool is_file(const std::string &path)
+{
+	namespace fs = std::filesystem;
+	return fs::exists(path) && fs::is_regular_file(path);
+}
+
 void save_main_data_to_json(const std::string filename = "main_data.json")
 {
 	try
@@ -42,7 +54,7 @@ void save_main_data_to_json(const std::string filename = "main_data.json")
 		ofs << j.dump(4);
 
 		std::stringstream ss;
-		ss << "save main data to file: " << filename;
+		ss << "save main data to " << filename << " successfully";
 		std::string print_str = ss.str();
 		std::cout << print_str << std::endl;
 	}
@@ -55,18 +67,6 @@ void save_main_data_to_json(const std::string filename = "main_data.json")
 	}
 }
 
-bool is_directory(const std::string &path)
-{
-	namespace fs = std::filesystem;
-	return fs::exists(path) && fs::is_directory(path);
-}
-
-bool is_file(const std::string &path)
-{
-	namespace fs = std::filesystem;
-	return fs::exists(path) && fs::is_regular_file(path);
-}
-
 void load_main_data_from_json(const std::string filename = "main_data.json")
 {
 	try
@@ -74,7 +74,7 @@ void load_main_data_from_json(const std::string filename = "main_data.json")
 		if (!is_file(filename))
 		{
 			std::stringstream ss;
-			ss << "file not exist: " << filename << ", can not load main data";
+			ss << "file not exist: " << filename << ", load main data failed";
 			std::string print_str = ss.str();
 			std::cout << print_str << std::endl;
 			return;
@@ -107,7 +107,7 @@ void load_main_data_from_json(const std::string filename = "main_data.json")
 		}
 
 		std::stringstream ss;
-		ss << "load main data from file: " << filename;
+		ss << "load main data from " << filename << " successfully";
 		std::string print_str = ss.str();
 		std::cout << print_str << std::endl;
 	}
