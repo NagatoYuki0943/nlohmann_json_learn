@@ -86,6 +86,10 @@ void load_main_data_from_json(const std::string filename = "main_data.json")
 		std::ifstream ifs(filename);
 		ifs >> j;
 
+		// 可以直接通过 [key] 取值
+		auto j_0 = j["0"];
+		std::cout << "j_0[\"enable\"] = " << j_0["enable"] << std::endl;
+
 		id2target_states.clear();
 
 		for (auto &[key, value] : j.items())
