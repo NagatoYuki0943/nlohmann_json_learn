@@ -32,7 +32,7 @@ bool is_file(const std::string &path)
 	return fs::exists(path) && fs::is_regular_file(path);
 }
 
-std::string get_json_string(int indent = 4)
+std::string get_json_string(const int indent = 4)
 {
 	try
 	{
@@ -106,7 +106,7 @@ void parse_json_string(const std::string &json_str)
 	}
 }
 
-void save_main_data_to_json(const std::string &filename = "main_data.json", int indent = 4)
+void save_main_data_to_json(const std::string &filename = "main_data.json", const int indent = 4)
 {
 	try
 	{
