@@ -32,6 +32,13 @@ bool is_file(const std::string &path)
 	return fs::exists(path) && fs::is_regular_file(path);
 }
 
+/**
+* @brief 获取 json 字符串
+*
+* @param indent 缩进, -1 表示不缩进,一行输出
+*
+* @return json 字符串
+*/
 std::string get_json_string(const int indent = 4)
 {
 	try
@@ -65,6 +72,13 @@ std::string get_json_string(const int indent = 4)
 	}
 }
 
+/**
+* @brief 解析 json 字符串
+*
+* @param json_str json 字符串
+*
+* @return 无
+*/
 void parse_json_string(const std::string &json_str)
 {
 	try{
@@ -106,6 +120,14 @@ void parse_json_string(const std::string &json_str)
 	}
 }
 
+/**
+* @brief 保存 main 数据到 json 文件
+*
+* @param filename 文件名
+* @param indent 缩进, -1 表示不缩进,一行输出
+*
+* @return 无
+*/
 void save_main_data_to_json(const std::string &filename = "main_data.json", const int indent = 4)
 {
 	try
@@ -128,6 +150,7 @@ void save_main_data_to_json(const std::string &filename = "main_data.json", cons
 
 		std::ofstream ofs(filename);
 		ofs << j.dump(indent);
+		// ofs << j;  // 这样输出就是没有 indent 的, 一行数据
 
 		std::stringstream ss;
 		ss << "save main data to " << filename << " successfully";
@@ -143,6 +166,13 @@ void save_main_data_to_json(const std::string &filename = "main_data.json", cons
 	}
 }
 
+/**
+* @brief 从 json 文件加载 main 数据
+*
+* @param filename 文件名
+*
+* @return 无
+*/
 void load_main_data_from_json(const std::string &filename = "main_data.json")
 {
 	try
@@ -255,7 +285,7 @@ int main()
 			  << std::endl
 			  << std::endl;
 
-	std::string json_str = get_json_string();
+	std::string json_str = get_json_string(4);
 	std::cout << "json_str:\n" << json_str << std::endl;
 	std::cout << std::endl
 			  << std::endl
