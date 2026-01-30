@@ -26,7 +26,7 @@ void parse_vector(const int indent = 4)
     auto print_target_states = [&target_states]() -> void
     {
         std::cout << "****************************************" << std::endl;
-        for (const auto target_state : target_states)
+        for (const auto &target_state : target_states)
         {
             std::cout << "ratio: " << target_state.ratio << "; ";
             std::cout << "box: [ ";
@@ -49,7 +49,7 @@ void parse_vector(const int indent = 4)
 
     // -------------------- json 序列化 -------------------- //
     nlohmann::json j;
-    for (const auto target_state : target_states)
+    for (const auto &target_state : target_states)
     {
         nlohmann::json j1;
         j1["ratio"] = target_state.ratio;
@@ -67,7 +67,7 @@ void parse_vector(const int indent = 4)
     nlohmann::json j1 = nlohmann::json::parse(json_str);
 
     target_states.clear();
-    for (auto value : j1)
+    for (const auto &value : j1)
     {
         TargetState target_state;
         target_state.ratio = value["ratio"].get<double>();
