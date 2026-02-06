@@ -13,6 +13,16 @@ learn nlohmann json
 ├─CMakeLists.txt
 ├─main.cpp
 ├─main.h
+├─lib.cpp
+├─lib.h
 ...
 ```
 
+编译命令
+
+```base
+mkdir build && cd build
+cmake ../
+cmake --build ./ -j 8 --config Release
+cmake --install ./ --config Release
+```

@@ -2,10 +2,10 @@
 .idea
 .vscode
 
-build
-out
-include/nlohmann
-
+build/*
+out/*
+include/nlohmann/*
+install/*
 
 # Prerequisites
 *.d
