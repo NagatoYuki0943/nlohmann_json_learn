@@ -48,8 +48,6 @@ if(MSVC)
     add_compile_options(/bigobj /utf-8)
 endif()
 
-include_directories("include")
-
 # 将源代码添加到此项目的可执行文件。
 add_executable (
     ${BINARY}
@@ -63,6 +61,11 @@ add_library(
     "lib.h"
     "lib.cpp"
 )
+
+# 添加头文件搜索路径
+# 只需要添加你自己项目内部的 include 文件夹
+target_include_directories(${BINARY} PRIVATE include)
+target_include_directories(${SHAREDLIB} PRIVATE include)
 
 # 安装执行文件
 install(TARGETS ${BINARY}
