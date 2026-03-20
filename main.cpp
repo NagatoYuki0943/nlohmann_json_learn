@@ -4,7 +4,6 @@
 #include <vector>
 #include <map>
 #include <nlohmann/json.hpp>
-#include "main.h"
 
 struct TargetState
 {
